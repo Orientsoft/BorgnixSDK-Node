@@ -6,6 +6,9 @@ var borgSDK = require('..')
 user.login('test1', 'welcome1')
 user.on('login', function () {
   console.log('up and running baby')
-  user.deviceManager.register('raspi', "eddie's raspi")
+  // var dev = user.deviceManager.newDevice()
+  user.deviceManager.list(function () {
+    console.log(user.deviceManager.devices)
+  })
 })
 
