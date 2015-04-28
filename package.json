@@ -1,6 +1,6 @@
 {
   "name": "borgnix-sdk",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "sdk for borgnix.com",
   "main": "borgnix.js",
   "scripts": {
