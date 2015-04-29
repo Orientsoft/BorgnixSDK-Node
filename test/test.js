@@ -7,8 +7,8 @@ var sdk = require('..')
 dev.connect(function () {
   console.log('[INFO] device connected')
   dev.send('hello world')
-  dev.on('message', function (message) {
-    console.log('[MSG]', message)
+  dev.on('message', function (payload) {
+    console.log('[MSG]', payload)
     dev.disconnect()
   })
 })

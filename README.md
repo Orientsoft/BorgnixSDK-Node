@@ -14,22 +14,42 @@ Usage
 -----
 ```javascript
 var borgnixSDK = require('borgnix-sdk')
-  , dev = new BorgnixSDK.Device( DEVICE_UUID
-                               , DEIVCE_TOKEN)
+  , dev = new borgnixSDK.Device( DEVICE_UUID, DEIVCE_TOKEN)
 
 dev.connect(function () {
-  console.log('connected')
+  console.log('[INFO] device connected')
   dev.send('dev_up')
-  dev.disconnect()
+  dev.on('message', function(payload) {
+    console.log('[MSG]', payload)
+    dev.disconnect()
+  })
 })
 ```
 
 API
 ---
 ### Device(uuid, token)
+
+Create a new device with uuid and token.
+
 ### Device.connect()
+
+Connect to borgnix MQTT broker.
+
 ### Device.disconnect()
-### Device.send()
+
+Disconnect from borgnix MQTT broker.
+
+### Device.send(payload)
+
+Send message to borgnix MQTT broker.
+
+Event
+-----
+
+### connect
+
+### message
 
 [1]: z.borgnix.com
 

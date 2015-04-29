@@ -1,5 +1,8 @@
 var mqtt = require('mqtt')
-  , option = { 'host': 'z.borgnix.com'
+  , option = { 
+             //   'host': 'voyager.orientsoft.cn'
+             // , 'port': 11883  
+               'host': 'z.borgnix.com'
              , 'port': 1883
              , 'username': '4593f7b0-ec88-11e4-a5a2-dfd112e27f0d'
              , 'password': '4415f0b1ca75bf14b1e4fb689847790e7c8217d8'
@@ -16,6 +19,8 @@ client.on('connect', function () {
   client.subscribe('dev/+/auth/up')
   client.subscribe('user/+/get_dev_list/up')
   client.subscribe('+/i')
+  // client.subscribe('test_msg')
+  client.subscribe('count')
   client.on('message', function (topic, message) {
     console.log('message received:', topic)
 
@@ -54,9 +59,16 @@ client.on('connect', function () {
 
     if (devData.test(topic)) {
       console.log('dev data received')
+      console.log(message.toString())
       var splitTopic = topic.split('/')
       splitTopic[1] = 'o'
-      client.publish(splitTopic.join('/'), 'Yeah, sth new please?')
+      var packet = {}
+      packet.payload = {'message': 'Yeah, sth new please?'}
+      client.publish(splitTopic.join('/'), JSON.stringify(packet))
+    }
+
+    if (topic == 'count') {
+      console.log(message.toString())
     }
   })
   
