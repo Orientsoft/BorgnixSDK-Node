@@ -19,10 +19,18 @@ client.on('connect', function () {
   client.subscribe('dev/+/auth/up')
   client.subscribe('user/+/get_dev_list/up')
   client.subscribe('+/i')
+  client.subscribe('/devices/+/out')
+  client.subscribe('/devices/+/inoc')
   // client.subscribe('test_msg')
   client.subscribe('count')
   client.on('message', function (topic, message) {
     console.log('message received:', topic)
+
+    // var pubTopic = topic.replace(/\/out/g, '/in')
+    // console.log(pubTopic)
+    // client.publish(pubTopic, 'response')
+    // var testTopic = topic.replace(/\/out/g, '/test')
+    // client.publish(testTopic, 'test response')
 
     if (login.test(topic)) {
       console.log('login received')

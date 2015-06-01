@@ -40,16 +40,38 @@ Connect to borgnix MQTT broker.
 
 Disconnect from borgnix MQTT broker.
 
-### Device.send(payload)
+### Device.send(payload[, optionalTopic])
 
 Send message to borgnix MQTT broker.
+If `optionalTopic` is given, the message published can be recieved by a Borgnix device node which has `optionalTopic` in subTopic.
+
+### Device.subscribe(topic, callback)
+
+Subscribe an additional topic apart from the default topic.
+**The topic is diffrent from a MQTT topic.**
+Once subscribed, the device can recieve message sent by a Borgnix device node with `topic` in subTopic.
+
+**example**
+```javascript
+dev.subscribe('specialtopic', function (message) {
+  console.log(message)
+})
+```
+
+### Device.unsubscribe(topic, callback)
+
+Unsubscribe a previously subscribed topic.
 
 Event
 -----
 
 ### connect
 
+Fired when the device is connected to Borgnix.
+
 ### message
+
+Fired when the device recieve a message under the default topic.
 
 [1]: z.borgnix.com
 

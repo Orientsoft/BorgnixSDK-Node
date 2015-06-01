@@ -1,8 +1,8 @@
 var sdk = require('..')
   , user = new sdk.User()
 
-  , dev = new sdk.Device( 'f7f4eab0-ec8b-11e4-887b-9d8d41635b45'
-                        , 'fb0d2424e850e1282758a4d1f06a5e7b13106bd0')
+  , dev = new sdk.Device( '62d3df20-0826-11e5-aa7d-c5c3529543aa'
+                        , '22dd9b4b1a0de9ca5a250628c43fadac6e42fee7')
 
 dev.connect(function () {
   console.log('[INFO] device connected')
